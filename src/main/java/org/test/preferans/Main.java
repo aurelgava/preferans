@@ -1,4 +1,4 @@
-package org.example;
+package org.test.preferans;
 
 import preferans.igra.Partija;
 
