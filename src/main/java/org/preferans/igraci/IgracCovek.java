@@ -1,6 +1,6 @@
-package preferans.igraci;
+package org.preferans.igraci;
 
-import preferans.Igrac;
+import org.preferans.Igrac;
 
 public class IgracCovek extends Igrac {
 

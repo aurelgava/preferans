@@ -1,4 +1,4 @@
-package preferans.igra;
+package org.preferans.igra;
 
 public class Tabela {
     private byte brojPreostalihRefea, brojAktivnihRefea;

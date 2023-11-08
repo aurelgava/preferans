@@ -1,7 +1,6 @@
-package preferans.igraci;
+package org.preferans.igraci;
 
-import preferans.Igrac;
-import preferans.igra.Partija;
+import org.preferans.Igrac;
 
 public class IgracAI extends Igrac implements Runnable{
 
@@ -13,6 +12,6 @@ public class IgracAI extends Igrac implements Runnable{
     @Override
     public void run() {
         //todo
-        Partija.getPartija();
+
     }
 }

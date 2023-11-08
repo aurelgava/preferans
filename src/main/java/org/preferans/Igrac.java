@@ -1,6 +1,6 @@
-package preferans;
+package org.preferans;
 
-import preferans.igra.Tabela;
+import org.preferans.igra.Tabela;
 
 public abstract class Igrac {
     private String ime;
