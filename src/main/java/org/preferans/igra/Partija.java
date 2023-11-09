@@ -37,4 +37,12 @@ public class Partija {
     public Deljenje getAktivnoDeljenje() {
         return aktivnoDeljenje;
     }
+
+    public Talon getTalon() {
+        return talon;
+    }
+
+    public Kup getKup() {
+        return kup;
+    }
 }

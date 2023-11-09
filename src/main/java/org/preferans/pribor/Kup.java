@@ -1,20 +1,27 @@
 package org.preferans.pribor;
 
+import org.preferans.igra.UzimacKarata;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Kup {
+public class Kup implements UzimacKarata {
     public static final byte BROJ_KUP_KARATA = 2;
-    private Karta[] kupKarte;
+    private ArrayList<Karta> kupKarte;
 
     public Kup(){
-        kupKarte = new Karta[BROJ_KUP_KARATA];
+        this.kupKarte = new ArrayList<>();
     }
     public void reset(){
-        Arrays.fill(kupKarte, null);
+        this.kupKarte = new ArrayList<>();
     }
 
-    public Karta[] getKupKarte() {
+    public ArrayList<Karta> getKupKarte() {
         return kupKarte;
     }
 
+    @Override
+    public void uzmiKartu(Karta karta) {
+        this.kupKarte.add(karta);
+    }
 }

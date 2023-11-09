@@ -1,7 +1,8 @@
 package org.preferans.igra;
 
-import org.preferans.Igrac;
+import org.preferans.igraci.Igrac;
 import org.preferans.pribor.Karta;
+import org.preferans.pribor.Kup;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -32,13 +33,30 @@ public class Deljenje {
         this.listaPoteza = new LinkedList<>();
     }
 
-    public void podeliKarte(Igrac[] igraci) {
+    public void podeliKarte(Igrac[] igraci, Kup k) {
         //for(Karta k : this.shpil) System.out.println(k);
         int index;
-        while(!this.shpil.isEmpty()) {
-            index = (new Random()).nextInt(this.shpil.size());
-            System.out.println(this.shpil.get(index));
-            this.shpil.remove(index);
+        while(this.shpil.size() > Kup.BROJ_KUP_KARATA) {
+            for(Igrac igrac : igraci ){
+                index = (new Random()).nextInt(this.shpil.size());
+                //System.out.println(this.shpil.get(index));
+                igrac.uzmiKartu(this.shpil.get(index));
+                this.shpil.remove(index);
+            }
+        }
+        while( !this.shpil.isEmpty() ){
+            k.uzmiKartu(this.shpil.remove(this.shpil.size() - 1));
+        }
+
+
+        for(Igrac igrac : igraci ){
+            for(Karta karta : igrac.getMojSpiel()){
+                System.out.print(karta+" ");
+            }
+            System.out.println();
+        }
+        for(Karta karta : k.getKupKarte()){
+            System.out.print(karta+" ");
         }
         //todo
     }

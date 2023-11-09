@@ -1,19 +1,27 @@
 package org.preferans.pribor;
 
+import org.preferans.igra.UzimacKarata;
+
+import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Talon {
+public class Talon implements UzimacKarata {
     public static final int BROJ_TALONSKIH_KARATA = 3;
-    private Karta[] talonKarte;
+    private ArrayList<Karta> talonKarte;
 
     public Talon() {
-        this.talonKarte = new Karta[3];
+        this.talonKarte = new ArrayList<>();
     }
     public void reset(){
-        Arrays.fill(this.talonKarte,null);
+        this.talonKarte = new ArrayList<>();
     }
 
-    public Karta[] getTalonKarte() {
+    public ArrayList<Karta> getTalonKarte() {
         return talonKarte;
+    }
+
+    @Override
+    public void uzmiKartu(Karta karta) {
+        this.talonKarte.add(karta);
     }
 }
