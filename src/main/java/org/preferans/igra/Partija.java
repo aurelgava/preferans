@@ -1,47 +1,40 @@
 package org.preferans.igra;
 
-import org.preferans.Igrac;
-import org.preferans.pribor.Karta;
+import org.preferans.pribor.Talon;
+import org.preferans.pribor.Kup;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Random;
-import java.util.stream.Stream;
 
 public class Partija {
-    //public static final byte BROJ_KARATA_U_SHPILU = 32;
-    public static enum Stanje {
-        START,
-        KRAJ,
-        LICITACIJA,
-        IGRA,
-        ODIGRAVANJE,
-        KONTRIRANJE,
-        DOLAZENJE,
-        ISHOD}
-
-    private Stanje stanje;
-    private LinkedList<Potez> listaPoteza;
-    private ArrayList<Karta> shpil;
-    public Partija() {
-        this.shpil = new ArrayList<>();
-        //redjanje karata u spilu
-        for(Karta.Broj broj : Karta.Broj.values())
-            for(Karta.Znak znak : Karta.Znak.values())
-                this.shpil.add(new Karta(broj,znak));
-        this.stanje = Stanje.START;
-        this.listaPoteza = new LinkedList<>();
+    private ArrayList<Deljenje> listaPartija;
+    private Talon talon;
+    private Kup kup;
+    private Deljenje aktivnoDeljenje;
+    private static Partija instanca;
+    public static Partija getInstance(){
+        if(instanca==null) instanca = new Partija();
+        return instanca;
+    }
+    public static Partija getNewInstance() {
+        return instanca = new Partija();
+    }
+    private Partija() {
+        this.listaPartija = new ArrayList<>();
+        this.zapocniNovuPartiju();
     }
 
-    public void podeliKarte(Igrac[] igraci) {
-        //for(Karta k : this.shpil) System.out.println(k);
-        int index;
-        while(!this.shpil.isEmpty()) {
-            index = (new Random()).nextInt(this.shpil.size());
-            System.out.println(this.shpil.get(index));
-            this.shpil.remove(index);
-        }
-        //todo
+
+
+    public ArrayList<Deljenje> getListaPartija() {
+        return listaPartija;
+    }
+    public void zapocniNovuPartiju() {
+        this.talon = new Talon();
+        this.kup = new Kup();
+        this.aktivnoDeljenje = new Deljenje();
+    }
+
+    public Deljenje getAktivnoDeljenje() {
+        return aktivnoDeljenje;
     }
 }
