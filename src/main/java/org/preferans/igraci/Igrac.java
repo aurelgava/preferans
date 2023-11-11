@@ -1,4 +1,4 @@
-package org.preferans;
+package org.preferans.igraci;
 
 import org.preferans.igra.Tabela;
 

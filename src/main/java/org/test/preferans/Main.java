@@ -1,6 +1,6 @@
 package org.test.preferans;
 
-import org.preferans.Igrac;
+import org.preferans.igraci.Igrac;
 import org.preferans.igra.Partija;
 import org.preferans.igraci.IgracAI;
 
@@ -18,6 +18,5 @@ public class Main {
     private static void zapocniNovuSesiju(Igrac[] igraci) {
         Partija s = Partija.getNewInstance();
         s.getAktivnoDeljenje().podeliKarte(igraci);
-
     }
 }

@@ -1,6 +1,6 @@
 package org.preferans.igra;
 
-import org.preferans.Igrac;
+import org.preferans.igraci.Igrac;
 import org.preferans.pribor.Karta;
 
 import java.util.ArrayList;
