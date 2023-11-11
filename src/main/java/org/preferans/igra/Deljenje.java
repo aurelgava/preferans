@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Deljenje {
+
     //public static final byte BROJ_KARATA_U_SHPILU = 32;
     public static enum Stanje {
         START,
@@ -34,19 +35,19 @@ public class Deljenje {
     }
 
     public void podeliKarte(ArrayList<Igrac> igraci, Kup k) {
-        //for(Karta k : this.shpil) System.out.println(k);
         int index;
         while(this.shpil.size() > Kup.BROJ_KUP_KARATA) {
             for(Igrac igrac : igraci ){
                 index = (new Random()).nextInt(this.shpil.size());
-                //System.out.println(this.shpil.get(index));
                 igrac.uzmiKartu(this.shpil.get(index));
                 this.shpil.remove(index);
             }
         }
+
         while( !this.shpil.isEmpty() ){
             k.uzmiKartu(this.shpil.remove(this.shpil.size() - 1));
         }
+
 
 
         for(Igrac igrac : igraci ){
@@ -60,4 +61,5 @@ public class Deljenje {
         }
         //todo
     }
+
 }

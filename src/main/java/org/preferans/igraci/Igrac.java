@@ -14,7 +14,6 @@ public abstract class Igrac implements UzimacKarata {
     public Igrac(String ime, short bule) {
         this.ime = ime;
         this.tabela = new Tabela(bule);
-
         this.mojSpiel = new ArrayList<>();
     }
 
@@ -34,5 +33,4 @@ public abstract class Igrac implements UzimacKarata {
     public ArrayList<Karta> getMojSpiel() {
         return mojSpiel;
     }
-
 }
