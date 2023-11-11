@@ -11,6 +11,7 @@ public class Partija {
     private Kup kup;
     private Deljenje aktivnoDeljenje;
     private static Partija instanca;
+    private boolean isFinished;
     public static Partija getInstance(){
         if(instanca==null) instanca = new Partija();
         return instanca;
@@ -19,11 +20,10 @@ public class Partija {
         return instanca = new Partija();
     }
     private Partija() {
+        this.isFinished = false;
         this.listaPartija = new ArrayList<>();
         this.zapocniNovuPartiju();
     }
-
-
 
     public ArrayList<Deljenje> getListaPartija() {
         return listaPartija;
@@ -44,5 +44,13 @@ public class Partija {
 
     public Kup getKup() {
         return kup;
+    }
+
+    public synchronized boolean isFinished() {
+        return isFinished;
+    }
+
+    public void setFinished(boolean finished) {
+        isFinished = finished;
     }
 }

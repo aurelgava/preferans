@@ -1,5 +1,7 @@
 package org.preferans.igra;
 
+import java.util.ArrayList;
+
 public  class Potez {
 
     public static enum Akcije {DVA,TRI,CETIRI,PET,SEST,SEDAM,DALJE,DOBAR,
@@ -11,9 +13,13 @@ public  class Potez {
                                 T7,T8,T9,T10,TJ,TD,TK,TA
                                 }
 
-    private Potez.Akcije[] vektorAkcije;
+    private ArrayList<Potez.Akcije> listaAkcija;
 
     public Potez() {
-        this.vektorAkcije = new Akcije[3];
+        this.listaAkcija = new ArrayList<>();
+    }
+
+    public ArrayList<Akcije> getListaAkcija() {
+        return listaAkcija;
     }
 }

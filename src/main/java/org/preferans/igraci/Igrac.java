@@ -25,7 +25,6 @@ public abstract class Igrac implements UzimacKarata {
         this.ime = ime;
     }
 
-
     public void uzmiKartu(Karta karta) {
         this.mojSpiel.add(karta);
     }
