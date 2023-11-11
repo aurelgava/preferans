@@ -33,7 +33,7 @@ public class Deljenje {
         this.listaPoteza = new LinkedList<>();
     }
 
-    public void podeliKarte(Igrac[] igraci, Kup k) {
+    public void podeliKarte(ArrayList<Igrac> igraci, Kup k) {
         //for(Karta k : this.shpil) System.out.println(k);
         int index;
         while(this.shpil.size() > Kup.BROJ_KUP_KARATA) {
