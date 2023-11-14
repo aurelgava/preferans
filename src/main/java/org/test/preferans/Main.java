@@ -11,10 +11,10 @@ public class Main {
 
     //public static final byte BROJ_IGRACA = 3;
     public static void main(String[] args) {
-        zapocniNovuPartiju((short)100);
+        zapocniNovuSesiju((short)100);
     }
-    private static void zapocniNovuPartiju(short bule) {
-        Sesija p = Sesija.getNewInstance();
+    private static void zapocniNovuSesiju(short bule) {
+        Sesija sesija = Sesija.getNewInstance();
         ArrayList<Igrac> igraci = new ArrayList<>();
         IgracAI i1 =  new IgracAI("Predrag",bule);
         IgracAI i2 =  new IgracAI("Frantz",bule);
@@ -24,7 +24,7 @@ public class Main {
         igraci.add(i3);
 
 
-        p.getAktivnoDeljenje().podeliKarte(igraci,p.getKup());
+        sesija.getAktivnaPartija().podeliKarte(igraci,sesija.getKup());
 
         new Thread(i1).start();
         new Thread(i2).start();

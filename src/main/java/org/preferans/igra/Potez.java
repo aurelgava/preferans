@@ -19,7 +19,5 @@ public  class Potez {
         this.listaAkcija = new ArrayList<>();
     }
 
-    public ArrayList<Akcije> getListaAkcija() {
-        return listaAkcija;
-    }
+
 }

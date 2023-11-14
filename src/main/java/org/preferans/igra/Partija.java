@@ -9,6 +9,15 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Partija {
+    public void odigraj(Potez.Akcije akcije) {
+        //todo
+    }
+
+    public ArrayList<Potez.Akcije> getValidneAkcije() {
+        //todo
+        return null;
+    }
+
     public static enum Stanje {
         START,
         KRAJ,

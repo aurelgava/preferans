@@ -34,7 +34,7 @@ public class Sesija {
         this.aktivnaPartija = new Partija();
     }
 
-    public Partija getAktivnoDeljenje() {
+    public Partija getAktivnaPartija() {
         return aktivnaPartija;
     }
 
