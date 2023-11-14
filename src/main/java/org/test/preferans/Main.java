@@ -2,10 +2,9 @@ package org.test.preferans;
 
 
 import org.preferans.igraci.Igrac;
-import org.preferans.igra.Partija;
+import org.preferans.igra.Sesija;
 import org.preferans.igraci.IgracAI;
 
-import javax.swing.*;
 import java.util.ArrayList;
 
 public class Main {
@@ -15,7 +14,7 @@ public class Main {
         zapocniNovuPartiju((short)100);
     }
     private static void zapocniNovuPartiju(short bule) {
-        Partija p = Partija.getNewInstance();
+        Sesija p = Sesija.getNewInstance();
         ArrayList<Igrac> igraci = new ArrayList<>();
         IgracAI i1 =  new IgracAI("Predrag",bule);
         IgracAI i2 =  new IgracAI("Frantz",bule);
