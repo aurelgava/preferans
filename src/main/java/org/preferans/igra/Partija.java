@@ -13,10 +13,10 @@ public class Partija {
         //todo
     }
 
-    public ArrayList<Potez.Akcije> getValidneAkcije() {
-        //todo
-        return null;
+    public Stanje getStanje() {
+        return stanje;
     }
+
 
     public static enum Stanje {
         START,

@@ -1,7 +1,7 @@
 package org.preferans.igraci;
 
-import org.preferans.igra.Tabela;
-import org.preferans.igra.UzimacKarata;
+import org.preferans.exceptions.BrojPotezaOutOfBounds;
+import org.preferans.igra.*;
 import org.preferans.pribor.Karta;
 
 import java.util.ArrayList;
@@ -31,5 +31,48 @@ public abstract class Igrac implements UzimacKarata {
 
     public ArrayList<Karta> getMojSpiel() {
         return mojSpiel;
+    }
+
+    protected ArrayList<Potez.Akcije> getValidneAkcije(Potez ap) {
+        try {
+            ArrayList<Potez.Akcije> listaValidnihAkcija = new ArrayList<>();
+            switch (Sesija.getInstance().getAktivnaPartija().getStanje()) {
+                case START:
+                    listaValidnihAkcija.add(Potez.Akcije.DALJE);
+                    listaValidnihAkcija.add(Potez.Akcije.IGRA);
+                    switch (ap.getListaAkcija().size()) {
+                        case 0:
+                            listaValidnihAkcija.add(Potez.Akcije.DVA);
+                            break;
+                        case 1:
+                            listaValidnihAkcija.add( ap.getListaAkcija().get(0).nextAction() );
+                            break;
+                        case 2:
+                            listaValidnihAkcija.add( ap.getListaAkcija().get(1).nextAction() );
+                            break;
+                        default:
+                            throw new BrojPotezaOutOfBounds();
+                    }
+                    break;
+                case KRAJ:
+                    break;
+                case LICITACIJA:
+                    break;
+                case IGRA:
+                    break;
+                case ODIGRAVANJE:
+                    break;
+                case KONTRIRANJE:
+                    break;
+                case DOLAZENJE:
+                    break;
+                case ISHOD:
+                    break;
+            }
+            return listaValidnihAkcija;
+        }catch (BrojPotezaOutOfBounds e){
+            System.out.println(e);
+            return null;
+        }
     }
 }

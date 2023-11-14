@@ -1,6 +1,7 @@
 package org.preferans.igraci;
 
 
+import org.preferans.igra.Partija;
 import org.preferans.igra.Sesija;
 import org.preferans.igra.Potez;
 
@@ -11,12 +12,20 @@ public class IgracAI extends Igrac implements Runnable{
         super(ime, bule);
     }
 
+
+
+
     @Override
     public void run() {
         while(!Sesija.getInstance().isFinished()){
-            System.out.println(super.getIme() + ": "+ Potez.Akcije.DALJE);
-            ArrayList<Potez.Akcije> listaAkcija = Sesija.getInstance().getAktivnaPartija().getValidneAkcije();
-            Sesija.getInstance().getAktivnaPartija().odigraj(listaAkcija.get(0));
+            Potez ap = Sesija.getInstance().getAktivnaPartija().getAktivanPotez();
+            ArrayList<Potez.Akcije> lva = super.getValidneAkcije(ap);
+            ap.getListaAkcija().add( lva.get(0) );
+            for (Potez.Akcije a : lva){
+               System.out.println(super.getIme() + ": " + a);
+            }
+            System.out.println("************");
+            //todo
         }
 
     }
