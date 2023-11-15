@@ -1,5 +1,6 @@
 package org.preferans.igra;
 
+import org.preferans.exceptions.NepostojeceStanje;
 import org.preferans.igraci.Igrac;
 import org.preferans.pribor.Karta;
 import org.preferans.pribor.Kup;
@@ -9,8 +10,47 @@ import java.util.LinkedList;
 import java.util.Random;
 
 public class Partija {
-    public void odigraj(Potez.Akcije akcije) {
-        //todo
+
+    public void zavrsnicaPoteza(Potez potez) {
+        try {
+            synchronized (this) {
+
+
+                Potez.Akcija a1 = potez.getListaAkcija().get(0);
+                Potez.Akcija a2 = potez.getListaAkcija().get(1);
+                Potez.Akcija a3 = potez.getListaAkcija().get(2);
+                switch (stanje){
+                    case START:
+                        if(a1==Potez.Akcija.DALJE && a2==Potez.Akcija.DALJE && a3==Potez.Akcija.DALJE){
+
+                            stanje = Stanje.ISHOD;
+                        }
+                        break;
+                    case IGRA:
+                        break;
+                    case LICITACIJA:
+                        break;
+                    case ISHOD:
+                        break;
+                    case DOLAZENJE:
+                        break;
+                    case KONTRIRANJE:
+                        break;
+                    case ODIGRAVANJE:
+                        break;
+                    case KRAJ:
+                        break;
+                    default: throw new NepostojeceStanje();
+                }
+
+                potez.getListaAkcija().clear();
+
+                //probudi igrace
+                notifyAll();
+            }
+        } catch (NepostojeceStanje e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Stanje getStanje() {

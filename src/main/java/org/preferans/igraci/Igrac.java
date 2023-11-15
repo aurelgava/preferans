@@ -33,16 +33,16 @@ public abstract class Igrac implements UzimacKarata {
         return mojSpiel;
     }
 
-    protected ArrayList<Potez.Akcije> getValidneAkcije(Potez ap) {
+    protected ArrayList<Potez.Akcija> getValidneAkcije(Potez ap) {
         try {
-            ArrayList<Potez.Akcije> listaValidnihAkcija = new ArrayList<>();
+            ArrayList<Potez.Akcija> listaValidnihAkcija = new ArrayList<>();
             switch (Sesija.getInstance().getAktivnaPartija().getStanje()) {
                 case START:
-                    listaValidnihAkcija.add(Potez.Akcije.DALJE);
-                    listaValidnihAkcija.add(Potez.Akcije.IGRA);
+                    listaValidnihAkcija.add(Potez.Akcija.DALJE);
+                    listaValidnihAkcija.add(Potez.Akcija.IGRA);
                     switch (ap.getListaAkcija().size()) {
                         case 0:
-                            listaValidnihAkcija.add(Potez.Akcije.DVA);
+                            listaValidnihAkcija.add(Potez.Akcija.DVA);
                             break;
                         case 1:
                             listaValidnihAkcija.add( ap.getListaAkcija().get(0).nextAction() );
@@ -67,6 +67,7 @@ public abstract class Igrac implements UzimacKarata {
                 case DOLAZENJE:
                     break;
                 case ISHOD:
+
                     break;
             }
             return listaValidnihAkcija;

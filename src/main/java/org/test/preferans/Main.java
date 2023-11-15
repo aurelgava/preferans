@@ -23,7 +23,6 @@ public class Main {
         igraci.add(i2);
         igraci.add(i3);
 
-
         sesija.getAktivnaPartija().podeliKarte(igraci,sesija.getKup());
 
         new Thread(i1).start();
