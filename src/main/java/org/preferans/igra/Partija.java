@@ -14,6 +14,7 @@ public class Partija {
     public void zavrsnicaPoteza(Potez potez) {
         try {
             synchronized (this) {
+
                 Igrac i1 = Sesija.getInstance().getIgraci().get(0);
                 Igrac i2 = Sesija.getInstance().getIgraci().get(1);
                 Igrac i3 = Sesija.getInstance().getIgraci().get(2);
@@ -50,8 +51,9 @@ public class Partija {
                 potez.getListaAkcija().clear();
 
                 //probudi igrace
-
-                notifyAll();
+                Sesija.getInstance().getIgraci().get(0).notify();
+                Sesija.getInstance().getIgraci().get(1).notify();
+                Sesija.getInstance().getIgraci().get(2).notify();
             }
         } catch (NepostojeceStanje e) {
             throw new RuntimeException(e);
@@ -90,7 +92,7 @@ public class Partija {
         this.aktivanPotez = new Potez();
     }
 
-    public void podeliKarte(ArrayList<Igrac> igraci, Kup k) {
+    public void podeliKarte(ArrayList<Igrac> igraci) {
         //for(Karta k : this.shpil) System.out.println(k);
         int index;
         while(this.shpil.size() > Kup.BROJ_KUP_KARATA) {
@@ -102,7 +104,7 @@ public class Partija {
             }
         }
         while( !this.shpil.isEmpty() ){
-            k.uzmiKartu(this.shpil.remove(this.shpil.size() - 1));
+            Sesija.getInstance().getKup().uzmiKartu(this.shpil.remove(this.shpil.size() - 1));
         }
 
         /*

@@ -16,8 +16,8 @@ public class IgracAI extends Igrac implements Runnable{
 
     @Override
     public void run() {
-        try {
-            while(!Sesija.getInstance().isFinished()) {
+        //try {
+            while(!Sesija.getInstance().isFinished() && this.mojPotez) {
                 synchronized (this) {
                     //vidi sta se desava u aktivnom potezu
                     Potez ap = Sesija.getInstance().getAktivnaPartija().getAktivanPotez();
@@ -30,13 +30,13 @@ public class IgracAI extends Igrac implements Runnable{
                     ap.odigrajAkciju(  lva.get(0) );
 
                     //odigrao si. Cekaj sad
-                    this.wait();
-
+                    //wait();
+                    this.mojPotez = false;
                 }
             }
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
+        //} catch (InterruptedException e) {
+        //    throw new RuntimeException(e);
+        //}
 
     }
 }

@@ -16,15 +16,29 @@ public class Sesija {
     private static Sesija instanca;
     private boolean isFinished;
     public static Sesija getInstance(){
-        if(instanca==null) instanca = new Sesija();
         return instanca;
     }
-    public static Sesija getNewInstance() {
-        return instanca = new Sesija();
+    public static void zapocniNovuSesiju(short bule) {
+        ArrayList<Igrac> igraci = new ArrayList<>();
+        IgracAI i1 =  new IgracAI("Predrag",bule);
+        IgracAI i2 =  new IgracAI("Frantz",bule);
+        IgracAI i3 =  new IgracAI("Eintz",bule);
+        igraci.add(i1);
+        igraci.add(i2);
+        igraci.add(i3);
+        instanca = new Sesija(igraci);
+        instanca.getAktivnaPartija().podeliKarte(igraci);
+
+        i1.setMojPotez(true);
+        new Thread(i1).start();
+        new Thread(i2).start();
+        new Thread(i3).start();
+
     }
-    private Sesija() {
+    private Sesija(ArrayList<Igrac> igraci) {
         this.isFinished = false;
         this.listaPartija = new ArrayList<>();
+        this.igraci =igraci;
         this.zapocniNovuPartiju();
     }
 
@@ -61,21 +75,5 @@ public class Sesija {
         return igraci;
     }
 
-    public void zapocniNovuSesiju(short bule) {
-        instanca = new Sesija();
-        igraci = new ArrayList<>();
-        IgracAI i1 =  new IgracAI("Predrag",bule);
-        IgracAI i2 =  new IgracAI("Frantz",bule);
-        IgracAI i3 =  new IgracAI("Eintz",bule);
-        igraci.add(i1);
-        igraci.add(i2);
-        igraci.add(i3);
 
-        instanca.getAktivnaPartija().podeliKarte(igraci,kup);
-
-        new Thread(i1).start();
-        new Thread(i2).start();
-        new Thread(i3).start();
-
-    }
 }
