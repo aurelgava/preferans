@@ -67,7 +67,7 @@ public abstract class Igrac implements UzimacKarata {
                 case DOLAZENJE:
                     break;
                 case ISHOD:
-
+                    System.out.println("treba nesto da zapisem");
                     break;
             }
             return listaValidnihAkcija;
@@ -75,5 +75,9 @@ public abstract class Igrac implements UzimacKarata {
             System.out.println(e);
             return null;
         }
+    }
+
+    public void zapisi(Beleska beleska) {
+        //todo
     }
 }

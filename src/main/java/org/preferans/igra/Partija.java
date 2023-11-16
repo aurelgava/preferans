@@ -14,7 +14,9 @@ public class Partija {
     public void zavrsnicaPoteza(Potez potez) {
         try {
             synchronized (this) {
-
+                Igrac i1 = Sesija.getInstance().getIgraci().get(0);
+                Igrac i2 = Sesija.getInstance().getIgraci().get(1);
+                Igrac i3 = Sesija.getInstance().getIgraci().get(2);
 
                 Potez.Akcija a1 = potez.getListaAkcija().get(0);
                 Potez.Akcija a2 = potez.getListaAkcija().get(1);
@@ -22,7 +24,9 @@ public class Partija {
                 switch (stanje){
                     case START:
                         if(a1==Potez.Akcija.DALJE && a2==Potez.Akcija.DALJE && a3==Potez.Akcija.DALJE){
-
+                            i1.zapisi(new Beleska(true));
+                            i2.zapisi(new Beleska(true));
+                            i3.zapisi(new Beleska(true));
                             stanje = Stanje.ISHOD;
                         }
                         break;
@@ -46,6 +50,7 @@ public class Partija {
                 potez.getListaAkcija().clear();
 
                 //probudi igrace
+
                 notifyAll();
             }
         } catch (NepostojeceStanje e) {
