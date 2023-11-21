@@ -7,7 +7,7 @@ import org.preferans.pribor.Karta;
 import java.util.ArrayList;
 
 public abstract class Igrac implements UzimacKarata {
-    protected boolean mojPotez;
+
     protected String ime;
     protected Tabela tabela;
     protected ArrayList<Karta> mojSpiel;
@@ -16,12 +16,10 @@ public abstract class Igrac implements UzimacKarata {
         this.ime = ime;
         this.tabela = new Tabela(bule);
         this.mojSpiel = new ArrayList<>();
-        this.mojPotez = false;
+
     }
 
-    public void setMojPotez(boolean mojPotez) {
-        this.mojPotez = mojPotez;
-    }
+
 
     public String getIme() {
         return ime;
@@ -87,4 +85,5 @@ public abstract class Igrac implements UzimacKarata {
 
         //todo
     }
+    public abstract void odigraj();
 }

@@ -7,7 +7,9 @@ public class Main {
 
 
     public static void main(String[] args) {
+
         Sesija.zapocniNovuSesiju((short)100);
+
     }
 
 }

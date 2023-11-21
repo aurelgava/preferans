@@ -5,38 +5,30 @@ import org.preferans.igra.Sesija;
 import org.preferans.igra.Potez;
 
 import java.util.ArrayList;
+import java.util.Random;
 
-public class IgracAI extends Igrac implements Runnable{
+public class IgracAI extends Igrac{
     public IgracAI(String ime, short bule) {
         super(ime, bule);
     }
 
-
-
-
     @Override
-    public void run() {
-        //try {
-            while(!Sesija.getInstance().isFinished() && this.mojPotez) {
-                synchronized (this) {
-                    //vidi sta se desava u aktivnom potezu
-                    Potez ap = Sesija.getInstance().getAktivnaPartija().getAktivanPotez();
+    public void odigraj() {
 
-                    //vidi sta mozes da odigras
-                    ArrayList<Potez.Akcija> lva = super.getValidneAkcije(ap);
+        //vidi sta se desava u aktivnom potezu
+        Potez ap = Sesija.getInstance().getAktivnaPartija().getAktivanPotez();
 
-                    //igraj nesto
-                    System.out.println(super.getIme() + ": " + lva.get(0));
-                    ap.odigrajAkciju(  lva.get(0) );
+        //vidi sta mozes da odigras
+        ArrayList<Potez.Akcija> lva = super.getValidneAkcije(ap);
 
-                    //odigrao si. Cekaj sad
-                    //wait();
-                    this.mojPotez = false;
-                }
-            }
-        //} catch (InterruptedException e) {
-        //    throw new RuntimeException(e);
-        //}
+        //igraj nesto
+        int i = new Random().nextInt(lva.size());
+        System.out.println(super.getIme() + ": " + lva.get(i));
+        ap.odigrajAkciju(  lva.get(i) );
+
+
+
+
 
     }
 }

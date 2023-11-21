@@ -13,7 +13,7 @@ public class Partija {
 
     public void zavrsnicaPoteza(Potez potez) {
         try {
-            synchronized (this) {
+
 
                 Igrac i1 = Sesija.getInstance().getIgraci().get(0);
                 Igrac i2 = Sesija.getInstance().getIgraci().get(1);
@@ -47,14 +47,7 @@ public class Partija {
                         break;
                     default: throw new NepostojeceStanje();
                 }
-
                 potez.getListaAkcija().clear();
-
-                //probudi igrace
-                Sesija.getInstance().getIgraci().get(0).notify();
-                Sesija.getInstance().getIgraci().get(1).notify();
-                Sesija.getInstance().getIgraci().get(2).notify();
-            }
         } catch (NepostojeceStanje e) {
             throw new RuntimeException(e);
         }
@@ -122,5 +115,22 @@ public class Partija {
 
     public Potez getAktivanPotez() {
         return aktivanPotez;
+    }
+
+    public void run(){
+        ArrayList<Igrac> igraci = Sesija.getInstance().getIgraci();
+        this.podeliKarte(igraci);
+        while(this.stanje!=Stanje.KRAJ){
+            igraci.get(0).odigraj();
+            igraci.get(1).odigraj();
+            igraci.get(2).odigraj();
+
+            //rotiraj igrace
+            Igrac temp = igraci.get(0);
+            igraci.set(0, igraci.get(1));
+            igraci.set(1, igraci.get(2));
+            igraci.set(2, temp);
+            System.out.println("*****************");
+        }
     }
 }

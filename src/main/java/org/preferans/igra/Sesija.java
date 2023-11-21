@@ -15,31 +15,32 @@ public class Sesija {
     private Partija aktivnaPartija;
     private static Sesija instanca;
     private boolean isFinished;
+
     public static Sesija getInstance(){
         return instanca;
     }
     public static void zapocniNovuSesiju(short bule) {
-        ArrayList<Igrac> igraci = new ArrayList<>();
+        instanca = new Sesija();
+        instanca.igraci = new ArrayList<>();
         IgracAI i1 =  new IgracAI("Predrag",bule);
         IgracAI i2 =  new IgracAI("Frantz",bule);
         IgracAI i3 =  new IgracAI("Eintz",bule);
-        igraci.add(i1);
-        igraci.add(i2);
-        igraci.add(i3);
-        instanca = new Sesija(igraci);
-        instanca.getAktivnaPartija().podeliKarte(igraci);
+        instanca.igraci.add(i1);
+        instanca.igraci.add(i2);
+        instanca.igraci.add(i3);
 
-        i1.setMojPotez(true);
-        new Thread(i1).start();
-        new Thread(i2).start();
-        new Thread(i3).start();
+        instanca.run();
 
     }
-    private Sesija(ArrayList<Igrac> igraci) {
+    private void run(){
+        while(!instanca.isFinished) {
+            this.zapocniNovuPartiju();
+            this.getAktivnaPartija().run();
+        }
+    }
+    private Sesija() {
         this.isFinished = false;
         this.listaPartija = new ArrayList<>();
-        this.igraci =igraci;
-        this.zapocniNovuPartiju();
     }
 
     public ArrayList<Partija> getListaPartija() {
