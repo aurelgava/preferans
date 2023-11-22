@@ -27,6 +27,12 @@ public class Tabela {
     public void setBrojAktivnihRefea(byte brojAktivnihRefea) {
         this.brojAktivnihRefea = brojAktivnihRefea;
     }
+    public void dodajRefe() {
+        if(this.brojPreostalihRefea > 0){
+            this.brojPreostalihRefea--;
+            this.brojAktivnihRefea++;
+        }
+    }
 
     public short getSupeLevi() {
         return supeLevi;

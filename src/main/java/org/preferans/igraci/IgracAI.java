@@ -1,6 +1,7 @@
 package org.preferans.igraci;
 
 
+import org.preferans.igra.Akcija;
 import org.preferans.igra.Sesija;
 import org.preferans.igra.Potez;
 
@@ -19,12 +20,14 @@ public class IgracAI extends Igrac{
         Potez ap = Sesija.getInstance().getAktivnaPartija().getAktivanPotez();
 
         //vidi sta mozes da odigras
-        ArrayList<Potez.Akcija> lva = super.getValidneAkcije(ap);
+        ArrayList<Akcija> lva = super.getValidneAkcije(ap);
 
         //igraj nesto
         int i = new Random().nextInt(lva.size());
-        System.out.println(super.getIme() + ": " + lva.get(i));
-        ap.odigrajAkciju(  lva.get(i) );
+        System.out.print(super.getIme() + ": " + lva.get(i) + "             ");
+        lva.forEach( (e)-> System.out.print(e+",") );
+        System.out.println("");
+        ap.dodajAkciju(  lva.get(i) );
 
 
 

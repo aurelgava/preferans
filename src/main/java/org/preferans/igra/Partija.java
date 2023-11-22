@@ -13,41 +13,57 @@ public class Partija {
 
     public void zavrsnicaPoteza(Potez potez) {
         try {
+            Igrac i1 = Sesija.getInstance().getIgraci().get(0);
+            Igrac i2 = Sesija.getInstance().getIgraci().get(1);
+            Igrac i3 = Sesija.getInstance().getIgraci().get(2);
 
-
-                Igrac i1 = Sesija.getInstance().getIgraci().get(0);
-                Igrac i2 = Sesija.getInstance().getIgraci().get(1);
-                Igrac i3 = Sesija.getInstance().getIgraci().get(2);
-
-                Potez.Akcija a1 = potez.getListaAkcija().get(0);
-                Potez.Akcija a2 = potez.getListaAkcija().get(1);
-                Potez.Akcija a3 = potez.getListaAkcija().get(2);
-                switch (stanje){
-                    case START:
-                        if(a1==Potez.Akcija.DALJE && a2==Potez.Akcija.DALJE && a3==Potez.Akcija.DALJE){
-                            i1.zapisi(new Beleska(true));
-                            i2.zapisi(new Beleska(true));
-                            i3.zapisi(new Beleska(true));
-                            stanje = Stanje.ISHOD;
-                        }
-                        break;
-                    case IGRA:
-                        break;
-                    case LICITACIJA:
-                        break;
-                    case ISHOD:
-                        break;
-                    case DOLAZENJE:
-                        break;
-                    case KONTRIRANJE:
-                        break;
-                    case ODIGRAVANJE:
-                        break;
-                    case KRAJ:
-                        break;
-                    default: throw new NepostojeceStanje();
-                }
-                potez.getListaAkcija().clear();
+            Akcija a1 = potez.getListaAkcija().get(0);
+            Akcija a2 = potez.getListaAkcija().get(1);
+            Akcija a3 = potez.getListaAkcija().get(2);
+            //System.out.println("Akcije: "+a1+","+a2+","+a3);
+            switch (stanje){
+                case START:
+                    if(a1==Akcija.DVA || a2==Akcija.DVA || a3==Akcija.DVA){
+                        stanje = Stanje.LICITACIJA;
+                    }
+                    if(a1==Akcija.IGRA || a2==Akcija.IGRA || a3==Akcija.IGRA){
+                        stanje = Stanje.IGRA;
+                    }
+                    if(a1==Akcija.BETL || a2==Akcija.BETL || a3==Akcija.BETL){
+                        stanje = Stanje.IGRA;
+                    }
+                    if(a1==Akcija.SANS || a2==Akcija.SANS || a3==Akcija.SANS){
+                        stanje = Stanje.IGRA;
+                    }
+                    if(a1==Akcija.DALJE && a2==Akcija.DALJE && a3==Akcija.DALJE) {
+                        i1.zapisi(new Beleska(true));
+                        i2.zapisi(new Beleska(true));
+                        i3.zapisi(new Beleska(true));
+                        stanje = Stanje.KRAJ;
+                    }
+                    break;
+                case IGRA:
+                    //todo
+                    break;
+                case LICITACIJA:
+                    //todo
+                    break;
+                case DOLAZENJE:
+                    //todo
+                    break;
+                case KONTRIRANJE:
+                    //todo
+                    break;
+                case ODIGRAVANJE:
+                    //todo
+                    break;
+                case KRAJ:
+                    //todo
+                    break;
+                default: throw new NepostojeceStanje();
+            }
+            System.out.println(">>>>>"+stanje+"<<<<<<");
+            potez.getListaAkcija().clear();
         } catch (NepostojeceStanje e) {
             throw new RuntimeException(e);
         }
@@ -65,8 +81,7 @@ public class Partija {
         IGRA,
         ODIGRAVANJE,
         KONTRIRANJE,
-        DOLAZENJE,
-        ISHOD
+        DOLAZENJE
     }
 
 
@@ -124,13 +139,7 @@ public class Partija {
             igraci.get(0).odigraj();
             igraci.get(1).odigraj();
             igraci.get(2).odigraj();
-
-            //rotiraj igrace
-            Igrac temp = igraci.get(0);
-            igraci.set(0, igraci.get(1));
-            igraci.set(1, igraci.get(2));
-            igraci.set(2, temp);
-            System.out.println("*****************");
+            System.out.println("-------------");
         }
     }
 }

@@ -14,4 +14,20 @@ public class Beleska {
     public Beleska(boolean b) {
         this.refe = b;
     }
+
+    public int getLevi() {
+        return levi;
+    }
+
+    public int getDesni() {
+        return desni;
+    }
+
+    public int getJa() {
+        return ja;
+    }
+
+    public boolean isRefe() {
+        return refe;
+    }
 }

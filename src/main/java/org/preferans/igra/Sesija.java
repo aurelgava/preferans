@@ -34,8 +34,16 @@ public class Sesija {
     }
     private void run(){
         while(!instanca.isFinished) {
+
             this.zapocniNovuPartiju();
             this.getAktivnaPartija().run();
+            System.out.println("******************************************");
+            //rotiraj igrace
+            Igrac temp = igraci.get(0);
+            igraci.set(0, igraci.get(1));
+            igraci.set(1, igraci.get(2));
+            igraci.set(2, temp);
+
         }
     }
     private Sesija() {

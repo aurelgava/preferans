@@ -37,42 +37,32 @@ public abstract class Igrac implements UzimacKarata {
         return mojSpiel;
     }
 
-    protected ArrayList<Potez.Akcija> getValidneAkcije(Potez ap) {
+    protected ArrayList<Akcija> getValidneAkcije(Potez ap) {
         try {
-            ArrayList<Potez.Akcija> listaValidnihAkcija = new ArrayList<>();
+            ArrayList<Akcija> listaValidnihAkcija = new ArrayList<>();
+
             switch (Sesija.getInstance().getAktivnaPartija().getStanje()) {
                 case START:
-                    listaValidnihAkcija.add(Potez.Akcija.DALJE);
-                    listaValidnihAkcija.add(Potez.Akcija.IGRA);
-                    switch (ap.getListaAkcija().size()) {
-                        case 0:
-                            listaValidnihAkcija.add(Potez.Akcija.DVA);
-                            break;
-                        case 1:
-                            listaValidnihAkcija.add( ap.getListaAkcija().get(0).nextAction() );
-                            break;
-                        case 2:
-                            listaValidnihAkcija.add( ap.getListaAkcija().get(1).nextAction() );
-                            break;
-                        default:
-                            throw new BrojPotezaOutOfBounds();
-                    }
+                    listaValidnihAkcija.addAll( DrvoAkcija.getInstance().getChildrenOfNode( ap.getListaAkcija() ));
                     break;
                 case KRAJ:
                     break;
                 case LICITACIJA:
+                    //todo
                     break;
                 case IGRA:
+                    //todo
                     break;
                 case ODIGRAVANJE:
+                    //todo
                     break;
                 case KONTRIRANJE:
+                    //todo
                     break;
                 case DOLAZENJE:
+                    //todo
                     break;
-                case ISHOD:
-                    System.out.println("treba nesto da zapisem");
-                    break;
+
             }
             return listaValidnihAkcija;
         }catch (BrojPotezaOutOfBounds e){
@@ -82,8 +72,12 @@ public abstract class Igrac implements UzimacKarata {
     }
 
     public void zapisi(Beleska beleska) {
+        if(beleska.isRefe()){
+            System.out.println("Dodao bih refe");
+            this.tabela.dodajRefe();
 
-        //todo
+        }
+
     }
     public abstract void odigraj();
 }
